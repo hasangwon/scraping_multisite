@@ -10,13 +10,13 @@ hdr = {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.
 print('test crawling')
 searchList = []
 
-url = 'https://www.efc365.co.kr/product/list.html?cate_no=69'  # site to crawl
+url = 'http://www.shshopping.co.kr/cwf/plan/retrieveExhbBannerList.do?tmpexbCd=CDEC00009871_1#exBannerList02'  # site to crawl
 driver = webdriver.Chrome()
 driver.implicitly_wait(3)
 driver.get(url)
 html = driver.page_source
 soup = BeautifulSoup(html)
-r = soup.select('.description')   #take source
+r = soup.select('a.text')   #take source
 prdC = 0   # items count
         
 searchList.append([' '])
@@ -24,12 +24,9 @@ searchList.append(['맛다름'])
 searchList.append(['전체보기 10개'])
 for x in r:
     temp = []
-    temp.append(x.select_one('.name').text)      #items 1
-    temp.append(x.select_one('div.price_area span.price').text)  #items 2
+    temp.append(x.select_one('.product_title').text)      #items 1
+    temp.append(x.select_one('span.product_price span.sale').text)  #items 2
     searchList.append(temp) #makes two-dimensional array
-    prdC = prdC + 1
-    if prdC == 10 : 
-        break
 
 driver.close()
 
