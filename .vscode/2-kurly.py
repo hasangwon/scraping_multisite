@@ -30,7 +30,7 @@ for x in r:
     temp.append(x.select_one('span.cost span.price').text)    
     searchList.append(temp)
     prdC = prdC + 1
-    if prdC == 10 : 
+    if prdC == 30 : 
         break
 
 driver.close()
@@ -48,12 +48,12 @@ prdC = 0   # items count
 searchList.append(['야채'])
 for x in r:
     temp = []
-    temp.append(x.index)
+    temp.append(prdC + 1)
     temp.append(x.select_one('span.name').text.strip())   
     temp.append(x.select_one('span.cost span.price').text)    
     searchList.append(temp) #makes two-dimensional array
     prdC = prdC + 1
-    if prdC == 10 : 
+    if prdC == 30 : 
         break
 driver.close()
 
