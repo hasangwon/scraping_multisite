@@ -18,7 +18,7 @@ time.sleep(5)
 driver.get(urlA)
 html = driver.page_source
 soup = BeautifulSoup(html)
-r = soup.select('li.basicList_item__2XT81.ad')
+r = soup.select('li.basicList_item__2XT81')
 prdC = 0
 
 searchList.append([' '])
@@ -26,13 +26,13 @@ searchList.append(['네이버쇼핑'])
 searchList.append(['과일'])
 for x in r:
     temp = []
-    temp.append(x.select_one('a.basicList_link__1MaTN').text)   
+    temp.append(x.select_one('a.basicList_link__1MaTN').attrs['title'])   
     temp.append(x.select_one('span span.price_num__2WUXn').text)     
     searchList.append(temp)
     prdC = prdC + 1
     if prdC == 10 : 
         break
-
+#__next > div > div.style_container__1YjHN > div > div.style_content_wrap__1PzEo > div.style_content__2T20F > ul > div > div:nth-child(6) > li > div > div.basicList_info_area__17Xyo > div.basicList_title__3P9Q7 > a
 driver.close()
 
 urlB = 'https://search.shopping.naver.com/search/category?catId=50001077'  # site to crawl
@@ -42,7 +42,7 @@ driver.get(urlB)
 time.sleep(5)
 html = driver.page_source
 soup = BeautifulSoup(html)
-r = soup.select('li.basicList_item__2XT81.ad')   #take source
+r = soup.select('li.basicList_item__2XT81')   #take source
 prdC = 0   # items count
 
 searchList.append(['야채'])

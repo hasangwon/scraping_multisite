@@ -4,14 +4,13 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 import glob
 import time
-
 hdr = {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"}
 
 # kurly crawling
 print('kurly crawling')
 searchList = []
 
-urlA = 'https://www.kurly.com/shop/goods/goods_list.php?category=908'
+urlA = 'https://www.kurly.com/shop/goods/goods_list.php?category=908006'
 driver = webdriver.Chrome()
 driver.implicitly_wait(3)
 driver.get(urlA)
@@ -26,6 +25,7 @@ searchList.append(['컬리'])
 searchList.append(['과일'])
 for x in r:
     temp = []
+    temp.append(prdC + 1)
     temp.append(x.select_one('span.name').text.strip())   
     temp.append(x.select_one('span.cost span.price').text)    
     searchList.append(temp)
@@ -48,6 +48,7 @@ prdC = 0   # items count
 searchList.append(['야채'])
 for x in r:
     temp = []
+    temp.append(x.index)
     temp.append(x.select_one('span.name').text.strip())   
     temp.append(x.select_one('span.cost span.price').text)    
     searchList.append(temp) #makes two-dimensional array
@@ -64,5 +65,3 @@ for i in searchList:
             
 f.close()
 print('kurly done')
-
-  

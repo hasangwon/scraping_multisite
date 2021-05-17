@@ -15,7 +15,7 @@ for i in count:
         print('crawling start')
         searchList = []
 
-        urlA = 'https://store.kakao.com/category/3/102104101?level=2'  # site to crawl
+        urlA = 'https://store.kakao.com/category/3/102104103?level=2'  # site to crawl
         driver = webdriver.Chrome()
         driver.implicitly_wait(3)
         driver.get(urlA)
@@ -27,7 +27,7 @@ for i in count:
         
         searchList.append([' '])
         searchList.append(['카카오쇼핑'])
-        searchList.append(['농산물'])
+        searchList.append(['과일'])
         for x in r:
             temp = []
             try : 
@@ -43,7 +43,7 @@ for i in count:
                 break
         driver.close()
 
-        urlB = 'https://store.kakao.com/category/3/102104103?level=2'  # site to crawl
+        urlB = 'https://store.kakao.com/category/3/102104101?level=2'  # site to crawl
         driver = webdriver.Chrome()
         driver.implicitly_wait(3)
         driver.get(urlB)
@@ -52,7 +52,7 @@ for i in count:
         r = soup.select('.link_item')   #take source
         prdC = 0   # items count
 
-        searchList.append(['과일'])
+        searchList.append(['농산물'])
         for x in r:
             temp = []
             try : 

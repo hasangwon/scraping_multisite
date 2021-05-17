@@ -4,10 +4,11 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 import glob
 import time
+from openpyxl import Workbook
 
 hdr = {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"}
 
-count = ['emart','kurly','wemap','coupang','gmarket','onbrix']
+count = ['emart','kurly','wemap','coupang','gmarket','kakao','onbrix']
 
 for i in count:
     # emartmall crawling
@@ -29,11 +30,12 @@ for i in count:
         searchList.append(['과일'])
         for x in r:
             temp = []
+            temp.append(prdC + 1)
             temp.append(x.select_one('div.title a > em.tx_ko').text)      #items 1
             temp.append(x.select_one('div.opt_price em.ssg_price').text)  #items 2
             searchList.append(temp) #makes two-dimensional array
             prdC = prdC + 1
-            if prdC == 10 : 
+            if prdC == 30 : 
                 break
 
         driver.close()
@@ -50,12 +52,14 @@ for i in count:
         searchList.append(['야채'])
         for x in r:
             temp = []
+            temp.append(prdC + 1)
             temp.append(x.select_one('div.title a > em.tx_ko').text)      #items 1
             temp.append(x.select_one('div.opt_price em.ssg_price').text)  #items 2
             searchList.append(temp) #makes two-dimensional array
             prdC = prdC + 1
-            if prdC == 10 : 
+            if prdC == 30 : 
                 break
+        driver.close()
 
         f = open(f'./save/1-emart.csv', 'w', encoding='utf-8', newline='')
         
@@ -64,7 +68,6 @@ for i in count:
             csvWriter.writerow(i)
             
         f.close()
-        driver.close()
         print('emart done')
 
     # kurly crawling
@@ -72,7 +75,7 @@ for i in count:
         print('kurly crawling')
         searchList = []
 
-        urlA = 'https://www.kurly.com/shop/goods/goods_list.php?category=908'
+        urlA = 'https://www.kurly.com/shop/goods/goods_list.php?category=908006'
         driver = webdriver.Chrome()
         driver.implicitly_wait(3)
         driver.get(urlA)
@@ -87,11 +90,12 @@ for i in count:
         searchList.append(['과일'])
         for x in r:
             temp = []
+            temp.append(prdC + 1)
             temp.append(x.select_one('span.name').text.strip())   
             temp.append(x.select_one('span.cost span.price').text)    
             searchList.append(temp)
             prdC = prdC + 1
-            if prdC == 10 : 
+            if prdC == 30 : 
                 break
 
         driver.close()
@@ -109,12 +113,14 @@ for i in count:
         searchList.append(['야채'])
         for x in r:
             temp = []
+            temp.append(prdC + 1)
             temp.append(x.select_one('span.name').text.strip())   
             temp.append(x.select_one('span.cost span.price').text)    
             searchList.append(temp) #makes two-dimensional array
             prdC = prdC + 1
-            if prdC == 10 : 
+            if prdC == 30 : 
                 break
+        driver.close()
 
         f = open(f'./save/2-kurly.csv', 'w', encoding='utf-8', newline='')
         
@@ -123,7 +129,6 @@ for i in count:
             csvWriter.writerow(i)
             
         f.close()
-        driver.close()
         print('kurly done')
 
     # wemap crawling
@@ -144,11 +149,12 @@ for i in count:
         searchList.append(['과일'])
         for x in r:
             temp = []
+            temp.append(prdC + 1)
             temp.append(x.select_one('.option_txt .text').text)   
             temp.append(x.select_one('.option_txt .num').text)    
             searchList.append(temp)
             prdC = prdC + 1
-            if prdC == 10 : 
+            if prdC == 30 : 
                 break
 
         driver.close()
@@ -165,12 +171,14 @@ for i in count:
         searchList.append(['야채'])
         for x in r:
             temp = []
+            temp.append(prdC + 1)
             temp.append(x.select_one('.option_txt .text').text)   
             temp.append(x.select_one('.option_txt .num').text)    
             searchList.append(temp) #makes two-dimensional array
             prdC = prdC + 1
-            if prdC == 10 : 
+            if prdC == 30 : 
                 break
+        driver.close()
 
         f = open(f'./save/3-wemap.csv', 'w', encoding='utf-8', newline='')
         
@@ -179,7 +187,6 @@ for i in count:
             csvWriter.writerow(i)
             
         f.close()
-        driver.close()
         print('wemap done')
                     
 
@@ -201,11 +208,12 @@ for i in count:
         searchList.append(['과일'])
         for x in r:
             temp = []
+            temp.append(prdC + 1)
             temp.append(x.select_one('.name').text.strip())   
             temp.append(x.select_one('.price-value').text.strip())    
             searchList.append(temp)
             prdC = prdC + 1
-            if prdC == 10 : 
+            if prdC == 30 : 
                 break
                 
         driver.close()
@@ -222,12 +230,14 @@ for i in count:
         searchList.append(['야채'])
         for x in r:
             temp = []
+            temp.append(prdC + 1)
             temp.append(x.select_one('.name').text.strip())   
             temp.append(x.select_one('.price-value').text.strip())    
             searchList.append(temp) #makes two-dimensional array
             prdC = prdC + 1
-            if prdC == 10 : 
+            if prdC == 30 : 
                 break
+        driver.close()
 
         f = open(f'./save/4-coupang.csv', 'w', encoding='utf-8', newline='')
         
@@ -236,7 +246,6 @@ for i in count:
             csvWriter.writerow(i)
             
         f.close()
-        driver.close()
         print('coupang done')
                     
     # gmarket crawling
@@ -257,11 +266,12 @@ for i in count:
         searchList.append(['과일'])
         for x in r:
             temp = []
+            temp.append(prdC + 1)
             temp.append(x.select_one('span.text__item').attrs['title'])   
             temp.append(x.select_one('strong.text.text__value').text)    
             searchList.append(temp)
             prdC = prdC + 1
-            if prdC == 10 : 
+            if prdC == 30 : 
                 break
 
         driver.close()
@@ -278,12 +288,14 @@ for i in count:
         searchList.append(['야채'])
         for x in r:
             temp = []
+            temp.append(prdC + 1)
             temp.append(x.select_one('span.text__item').attrs['title'])   
             temp.append(x.select_one('strong.text.text__value').text)    
             searchList.append(temp) #makes two-dimensional array
             prdC = prdC + 1
-            if prdC == 10 : 
+            if prdC == 30 : 
                 break
+        driver.close()
 
         f = open(f'./save/5-gmarket.csv', 'w', encoding='utf-8', newline='')
         
@@ -292,8 +304,72 @@ for i in count:
             csvWriter.writerow(i)
             
         f.close()
-        driver.close()
         print('gmarket done')
+
+    #kakao
+    elif i == 'kakao':
+        print('kakao crawling')
+        searchList = []
+
+        urlA = 'https://store.kakao.com/category/3/102104103?level=2'  # site to crawl
+        driver = webdriver.Chrome()
+        driver.implicitly_wait(3)
+        driver.get(urlA)
+        time.sleep(2)
+        html = driver.page_source
+        soup = BeautifulSoup(html)
+        r = soup.select('.link_item')   #take source
+        prdC = 0   # items count
+        
+        searchList.append([' '])
+        searchList.append(['카카오쇼핑'])
+        searchList.append(['과일'])
+        for x in r:
+            temp = []
+            try : 
+                temp.append(prdC + 1)
+                temp.append(x.select_one('span.txt_item.ng-star-inserted').text)   #items 1
+                temp.append(x.select_one('span.txt_price.ng-star-inserted').text)  #items 2
+                searchList.append(temp) #makes two-dimensional array
+            except AttributeError as e :
+                temp.append(x.select_one('em.emph_viral.ng-star-inserted').text)   #items 1
+                searchList.append(temp) #makes two-dimensional array
+            prdC = prdC + 1
+            if prdC == 30 : 
+                break
+        driver.close()
+
+        urlB = 'https://store.kakao.com/category/3/102104101?level=2'  # site to crawl
+        driver = webdriver.Chrome()
+        driver.implicitly_wait(3)
+        driver.get(urlB)
+        html = driver.page_source
+        soup = BeautifulSoup(html)
+        r = soup.select('.link_item')   #take source
+        prdC = 0   # items count
+
+        searchList.append(['농산물'])
+        for x in r:
+            temp = []
+            try : 
+                temp.append(prdC + 1)
+                temp.append(x.select_one('span.txt_item.ng-star-inserted').text)   #items 1
+                temp.append(x.select_one('span.txt_price.ng-star-inserted').text)  #items 2
+                searchList.append(temp) #makes two-dimensional array
+            except AttributeError as e :
+                temp.append(x.select_one('em.emph_viral.ng-star-inserted').text)   #items 1
+                searchList.append(temp) #makes two-dimensional array
+            prdC = prdC + 1
+            if prdC == 30 : 
+                break
+        driver.close()
+        
+        f = open(f'./save/8-kakao.csv', 'w', encoding='utf-8', newline='')
+        csvWriter = csv.writer(f)
+        for i in searchList:
+            csvWriter.writerow(i)
+        f.close()
+        print('kako done')
     
         # onbrix crawling
     elif i == 'onbrix' :
@@ -314,11 +390,12 @@ for i in count:
         searchList.append(['국산과일'])
         for x in r:
             temp = []
+            temp.append(prdC + 1)
             temp.append(x.select_one('div.item-pay > h2').text.strip())   
             temp.append(x.select_one('a > div > div.item-pay-detail > p.pay').text.strip())     
             searchList.append(temp)
             prdC = prdC + 1
-            if prdC == 10 : 
+            if prdC == 15 : 
                 break
 
         driver.close()
@@ -335,11 +412,12 @@ for i in count:
         searchList.append(['수입과일'])
         for x in r:
             temp = []
+            temp.append(prdC + 1)
             temp.append(x.select_one('div.item-pay > h2').text.strip())   
             temp.append(x.select_one('a > div > div.item-pay-detail > p.pay').text.strip())     
             searchList.append(temp) #makes two-dimensional array
             prdC = prdC + 1
-            if prdC == 10 : 
+            if prdC == 15 : 
                 break
         driver.close()
 
@@ -351,7 +429,7 @@ for i in count:
             
         f.close()
         print('onbrix done')
-
+        
     else :
         print('word error!')
                     
@@ -376,3 +454,13 @@ with open(merge_path, 'w') as f: # merge file open
         print(file.split('\\')[-1] + 'write one')
 
 print('>>making save file done')
+
+time.sleep(2)
+
+wb = Workbook()
+ws = wb.active
+with open('./crawl_data.csv', 'r', encoding='cp949') as f:
+    for row in csv.reader(f):
+        ws.append(row)
+
+wb.save('Prd_list_05_17.xlsx')
