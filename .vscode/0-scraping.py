@@ -60,30 +60,6 @@ for x in r:
         break
 driver.close()
 
-# 위메프 -----------------------------------------------------------------------------
-print('WEMAP crawling')
-urlA = 'https://front.wemakeprice.com/category/division/2100082'
-driver = webdriver.Chrome()
-driver.implicitly_wait(3)
-driver.get(urlA)
-html = driver.page_source
-soup = BeautifulSoup(html)
-r = soup.select('.list_conts_wrap')
-prdC = 0
-        
-searchList.append([' '])
-searchList.append(['위메프/과일'])
-for x in r:
-    temp = []
-    temp.append(prdC + 1)
-    temp.append(x.select_one('.option_txt .text').text)   
-    temp.append(x.select_one('.option_txt .num').text)    
-    searchList.append(temp)
-    prdC = prdC + 1
-    if prdC == 30 : 
-        break
-driver.close()                  
-
 # 쿠팡 -----------------------------------------------------------------------------
 print('COUPANG crawling')
 urlA = 'https://www.coupang.com/np/categories/194282'
@@ -102,30 +78,6 @@ for x in r:
     temp.append(prdC + 1)
     temp.append(x.select_one('.name').text.strip())   
     temp.append(x.select_one('.price-value').text.strip())    
-    searchList.append(temp)
-    prdC = prdC + 1
-    if prdC == 30 : 
-        break
-driver.close()
-
-# 지마켓 -----------------------------------------------------------------------------
-print('GMARKET crawling')
-urlA = 'http://browse.gmarket.co.kr/list?category=200000482'
-driver = webdriver.Chrome()
-driver.implicitly_wait(3)
-driver.get(urlA)
-html = driver.page_source
-soup = BeautifulSoup(html)
-r = soup.select('.box__information-major')
-prdC = 0
-        
-searchList.append([' '])
-searchList.append(['지마켓/과일'])
-for x in r:
-    temp = []
-    temp.append(prdC + 1)
-    temp.append(x.select_one('span.text__item').attrs['title'])   
-    temp.append(x.select_one('strong.text.text__value').text)    
     searchList.append(temp)
     prdC = prdC + 1
     if prdC == 30 : 
@@ -169,6 +121,30 @@ for x in r:
         break
 driver.close()
 
+# 위메프 -----------------------------------------------------------------------------
+print('WEMAP crawling')
+urlA = 'https://front.wemakeprice.com/category/division/2100082'
+driver = webdriver.Chrome()
+driver.implicitly_wait(3)
+driver.get(urlA)
+html = driver.page_source
+soup = BeautifulSoup(html)
+r = soup.select('.list_conts_wrap')
+prdC = 0
+        
+searchList.append([' '])
+searchList.append(['위메프/과일'])
+for x in r:
+    temp = []
+    temp.append(prdC + 1)
+    temp.append(x.select_one('.option_txt .text').text)   
+    temp.append(x.select_one('.option_txt .num').text)    
+    searchList.append(temp)
+    prdC = prdC + 1
+    if prdC == 30 : 
+        break
+driver.close()                  
+
 # 홈플러스 -----------------------------------------------------------------------------
 print('HOMEPLUS crawling')
 urlA = 'https://front.homeplus.co.kr/list?categoryDepth=1&categoryId=100001'
@@ -206,6 +182,30 @@ for x in r:
     temp.append(prdC + 1)
     temp.append(x.select_one('a.productTitle.css-y9z3ts-defaultStyle-Linked').text)   
     temp.append(x.select_one('strong.priceValue').text)     
+    searchList.append(temp)
+    prdC = prdC + 1
+    if prdC == 30 : 
+        break
+driver.close()
+
+# 지마켓 -----------------------------------------------------------------------------
+print('GMARKET crawling')
+urlA = 'http://browse.gmarket.co.kr/list?category=200000482'
+driver = webdriver.Chrome()
+driver.implicitly_wait(3)
+driver.get(urlA)
+html = driver.page_source
+soup = BeautifulSoup(html)
+r = soup.select('.box__information-major')
+prdC = 0
+        
+searchList.append([' '])
+searchList.append(['지마켓/과일'])
+for x in r:
+    temp = []
+    temp.append(prdC + 1)
+    temp.append(x.select_one('span.text__item').attrs['title'])   
+    temp.append(x.select_one('strong.text.text__value').text)    
     searchList.append(temp)
     prdC = prdC + 1
     if prdC == 30 : 
@@ -345,30 +345,6 @@ for x in r:
     if prdC == 30 : 
         break
 driver.close()
-
-# 위메프 -----------------------------------------------------------------------------
-print('WEMAP crawling')
-searchList.append([' '])
-searchList.append(['위메프/채소'])
-urlB = 'https://front.wemakeprice.com/category/division/2100085'  # site to crawl
-driver = webdriver.Chrome()
-driver.implicitly_wait(3)
-driver.get(urlB)
-html = driver.page_source
-soup = BeautifulSoup(html)
-r = soup.select('.list_conts_wrap')   #take source
-prdC = 0   # items count
-
-for x in r:
-    temp = []
-    temp.append(prdC + 1)
-    temp.append(x.select_one('.option_txt .text').text)   
-    temp.append(x.select_one('.option_txt .num').text)    
-    searchList.append(temp) #makes two-dimensional array
-    prdC = prdC + 1
-    if prdC == 30 : 
-        break
-driver.close()
                    
 # 쿠팡 -----------------------------------------------------------------------------
 print('KURLY crawling')
@@ -388,29 +364,6 @@ for x in r:
     temp.append(prdC + 1)
     temp.append(x.select_one('.name').text.strip())   
     temp.append(x.select_one('.price-value').text.strip())    
-    searchList.append(temp) #makes two-dimensional array
-    prdC = prdC + 1
-    if prdC == 30 : 
-        break
-driver.close()
-
-# 지마켓 -----------------------------------------------------------------------------
-print('GMARKET crawling')
-searchList.append([' '])
-searchList.append(['지마켓/채소'])
-urlB = 'http://browse.gmarket.co.kr/list?category=200001215'  # site to crawl
-driver = webdriver.Chrome()
-driver.implicitly_wait(3)
-driver.get(urlB)
-html = driver.page_source
-soup = BeautifulSoup(html)
-r = soup.select('.box__information-major')   #take source
-prdC = 0   # items count
-for x in r:
-    temp = []
-    temp.append(prdC + 1)
-    temp.append(x.select_one('span.text__item').attrs['title'])   
-    temp.append(x.select_one('strong.text.text__value').text)    
     searchList.append(temp) #makes two-dimensional array
     prdC = prdC + 1
     if prdC == 30 : 
@@ -455,6 +408,30 @@ for x in r:
         break
 driver.close()
 
+# 위메프 -----------------------------------------------------------------------------
+print('WEMAP crawling')
+searchList.append([' '])
+searchList.append(['위메프/채소'])
+urlB = 'https://front.wemakeprice.com/category/division/2100085'  # site to crawl
+driver = webdriver.Chrome()
+driver.implicitly_wait(3)
+driver.get(urlB)
+html = driver.page_source
+soup = BeautifulSoup(html)
+r = soup.select('.list_conts_wrap')   #take source
+prdC = 0   # items count
+
+for x in r:
+    temp = []
+    temp.append(prdC + 1)
+    temp.append(x.select_one('.option_txt .text').text)   
+    temp.append(x.select_one('.option_txt .num').text)    
+    searchList.append(temp) #makes two-dimensional array
+    prdC = prdC + 1
+    if prdC == 30 : 
+        break
+driver.close()
+
 # 홈플러스 -----------------------------------------------------------------------------
 print('HOMEPLUS crawling')
 urlA = 'https://front.homeplus.co.kr/list?categoryId=100003&categoryDepth=1'
@@ -488,6 +465,29 @@ for x in r:
     temp.append(x.select_one('a.productTitle.css-y9z3ts-defaultStyle-Linked').text)   
     temp.append(x.select_one('strong.priceValue').text)     
     searchList.append(temp)
+    prdC = prdC + 1
+    if prdC == 30 : 
+        break
+driver.close()
+
+# 지마켓 -----------------------------------------------------------------------------
+print('GMARKET crawling')
+searchList.append([' '])
+searchList.append(['지마켓/채소'])
+urlB = 'http://browse.gmarket.co.kr/list?category=200001215'  # site to crawl
+driver = webdriver.Chrome()
+driver.implicitly_wait(3)
+driver.get(urlB)
+html = driver.page_source
+soup = BeautifulSoup(html)
+r = soup.select('.box__information-major')   #take source
+prdC = 0   # items count
+for x in r:
+    temp = []
+    temp.append(prdC + 1)
+    temp.append(x.select_one('span.text__item').attrs['title'])   
+    temp.append(x.select_one('strong.text.text__value').text)    
+    searchList.append(temp) #makes two-dimensional array
     prdC = prdC + 1
     if prdC == 30 : 
         break
@@ -533,7 +533,7 @@ soup = BeautifulSoup(html)
 r = soup.select('.description')
 prdC = 0
         
-searchList.append([' '])
+searchList.append([' - 자사몰 - '])
 searchList.append(['맛다름'])
 searchList.append(['국산과일'])
 for x in r:
