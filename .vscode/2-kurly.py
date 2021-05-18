@@ -1,9 +1,11 @@
+#version 1.0
 import csv
 from urllib.parse import quote_plus
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import glob
 import time
+
 hdr = {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"}
 
 # kurly crawling
