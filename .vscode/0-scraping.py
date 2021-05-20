@@ -1,3 +1,13 @@
+#pip install selenium
+#pip install beautifulsoup4
+#pip install openpyxl
+#pip install xlwt
+
+#pip install nose
+#pip install cython
+#pip install numpy
+#pip install pandas
+
 import csv
 from urllib.parse import quote_plus
 from bs4 import BeautifulSoup
