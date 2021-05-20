@@ -35,9 +35,11 @@ for i in count:
                 temp.append(prdC + 1)
                 temp.append(x.select_one('span.txt_item.ng-star-inserted').text)   #items 1
                 temp.append(x.select_one('span.txt_price.ng-star-inserted').text)  #items 2
+                temp.append('카카오쇼핑')
                 searchList.append(temp) #makes two-dimensional array
             except AttributeError as e :
                 temp.append(x.select_one('em.emph_viral.ng-star-inserted').text)   #items 1
+                temp.append('카카오쇼핑')
                 searchList.append(temp) #makes two-dimensional array
             prdC = prdC + 1
             if prdC == 30 : 

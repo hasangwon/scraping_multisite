@@ -12,28 +12,42 @@ print('crawling start...')
 searchList = []
 
 print('crawling..')
-url = 'https://www.efc365.co.kr/product/list.html?cate_no=24'
+url = 'https://www.11st.co.kr/browsing/DisplayCategory.tmall?method=getDisplayCategory1Depth&dispCtgrNo=1129478'
 driver = webdriver.Chrome()
-driver.implicitly_wait(3)
 driver.get(url)
+driver.implicitly_wait(3)
+
+SCROLL_PAUSE_TIME = 2
+
+last_height = driver.execute_script("return document.body.scrollHeight")
+while True:
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(SCROLL_PAUSE_TIME)
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight-50);")
+    time.sleep(SCROLL_PAUSE_TIME)
+    new_height = driver.execute_script("return document.body.scrollHeight")
+    if new_height == last_height:
+        break
+    last_height = new_height
+    
 html = driver.page_source
 soup = BeautifulSoup(html)
-r = soup.select('.description')
+r = soup.select('div.pname')
 prdC = 0
-        
-searchList.append(['맛다름/국산과일'])
+
+searchList.append(['test'])
+
 for x in r:
-    try : 
-        temp = []
-        temp.append(prdC + 1)
-        temp.append(x.select_one('p.name ').text)   
-        temp.append(x.select_one('span.price.displaynone_sale.displaynone_custom').text)    
-    except AttributeError as e :
-        temp.append(['error!'])   #items 1
-        searchList.append(temp) #makes two-dimensional array
+    temp = []
+    temp.append(prdC + 1)
+    temp.append('11st')
+    temp.append(x.select_one('.pname p').text)   
+    temp.append(x.select_one('strong.sale_price').text)    
+    searchList.append(temp)
     prdC = prdC + 1
-    if prdC == 30 : 
+    if prdC == 10:
         break
+
 driver.close()
 
 f = open(f'./test-save/testfile.csv', 'w', encoding='utf-8', newline='')
