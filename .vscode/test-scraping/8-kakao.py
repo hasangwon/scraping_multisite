@@ -23,7 +23,7 @@ for i in count:
         time.sleep(2)
         html = driver.page_source
         soup = BeautifulSoup(html)
-        r = soup.select('.link_item')   #take source
+        r = soup.select('.link_product')   #take source
         prdC = 0   # items count
         
         searchList.append([' '])
@@ -33,38 +33,13 @@ for i in count:
             temp = []
             try : 
                 temp.append(prdC + 1)
-                temp.append(x.select_one('span.txt_item.ng-star-inserted').text)   #items 1
-                temp.append(x.select_one('span.txt_price.ng-star-inserted').text)  #items 2
+                temp.append(x.select_one('.product_name').text)   #items 1
+                temp.append(x.select_one('.txt_number.ng-star-inserted').text)  #items 2
                 temp.append('카카오쇼핑')
                 searchList.append(temp) #makes two-dimensional array
             except AttributeError as e :
-                temp.append(x.select_one('em.emph_viral.ng-star-inserted').text)   #items 1
+                temp.append('err')   #items 1
                 temp.append('카카오쇼핑')
-                searchList.append(temp) #makes two-dimensional array
-            prdC = prdC + 1
-            if prdC == 30 : 
-                break
-        driver.close()
-
-        urlB = 'https://store.kakao.com/category/3/102104101?level=2'  # site to crawl
-        driver = webdriver.Chrome()
-        driver.implicitly_wait(3)
-        driver.get(urlB)
-        html = driver.page_source
-        soup = BeautifulSoup(html)
-        r = soup.select('.link_item')   #take source
-        prdC = 0   # items count
-
-        searchList.append(['농산물'])
-        for x in r:
-            temp = []
-            try : 
-                temp.append(prdC + 1)
-                temp.append(x.select_one('span.txt_item.ng-star-inserted').text)   #items 1
-                temp.append(x.select_one('span.txt_price.ng-star-inserted').text)  #items 2
-                searchList.append(temp) #makes two-dimensional array
-            except AttributeError as e :
-                temp.append(x.select_one('em.emph_viral.ng-star-inserted').text)   #items 1
                 searchList.append(temp) #makes two-dimensional array
             prdC = prdC + 1
             if prdC == 30 : 
