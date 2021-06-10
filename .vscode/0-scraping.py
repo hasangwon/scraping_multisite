@@ -358,7 +358,7 @@ searchList.append([' - 채소 -'])
 # 이마트 -----------------------------------------------------------------------------
 print('EMART crawling')
 searchList.append(['이마트몰/채소'])
-urlB = 'http://emart.ssg.com/category/main.ssg?dispCtgId=6000095740'  # site to crawl
+urlB = 'http://emart.ssg.com/category/main.ssg?dispCtgId=6000095740&sort=sale'  # site to crawl
 driver = webdriver.Chrome()
 driver.implicitly_wait(3)
 driver.get(urlB)
@@ -802,7 +802,7 @@ ws = wb.active
 with open('./crawl_data.csv', 'r', encoding='cp949') as f:
     for row in csv.reader(f):
         ws.append(row)
-wb.save('Prd_list_06_02.xlsx')
+wb.save('Prd_list_06_11.xlsx')
 print('>>All process done!')
 
 

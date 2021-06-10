@@ -34,7 +34,7 @@ for x in r:
 
 driver.close()
 
-urlB = 'http://emart.ssg.com/category/main.ssg?dispCtgId=6000095740'  # site to crawl
+urlB = 'http://emart.ssg.com/category/main.ssg?dispCtgId=6000095740&sort=sale'  # site to crawl
 driver = webdriver.Chrome()
 driver.implicitly_wait(3)
 driver.get(urlB)
