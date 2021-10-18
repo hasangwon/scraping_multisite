@@ -11,7 +11,7 @@ hdr = {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.
 print('emartmall crawling')
 searchList = []
 
-urlA = 'http://emart.ssg.com/category/main.ssg?dispCtgId=6000095739'  # site to crawl
+urlA = 'http://emart.ssg.com/search.ssg?target=all&query=%EA%B3%BC%EC%9D%BC%EC%97%B0%EA%B0%80&ctgId=6000095795&ctgLv=2&page=2'  # site to crawl
 driver = webdriver.Chrome()
 driver.implicitly_wait(3)
 driver.get(urlA)
@@ -23,36 +23,23 @@ prdC = 0   # items count
 searchList.append([' '])
 searchList.append(['이마트몰'])
 searchList.append(['과일'])
+
 for x in r:
     temp = []
-    temp.append(x.select_one('div.title a > em.tx_ko').text)      #items 1
-    temp.append(x.select_one('div.opt_price em.ssg_price').text)  #items 2
-    searchList.append(temp) #makes two-dimensional array
+    try : 
+        temp.append(prdC + 1)
+        temp.append(x.select_one('div.title a > em.tx_ko').text)      #items 1
+        temp.append('  ')  #items 3
+        temp.append(x.select_one('div.org_price em.ssg_price').text)  #items 2
+        temp.append(x.select_one('div.opt_price em.ssg_price').text)  #items 3
+        searchList.append(temp) #makes two-dimensional array
+    except AttributeError as e :
+        temp.append(x.select_one('div.opt_price em.ssg_price').text)  #items 3
+        temp.append(' ')   #items 1
+        searchList.append(temp) #makes two-dimensional array
     prdC = prdC + 1
     if prdC == 10 : 
         break
-
-driver.close()
-
-urlB = 'http://emart.ssg.com/category/main.ssg?dispCtgId=6000095740&sort=sale'  # site to crawl
-driver = webdriver.Chrome()
-driver.implicitly_wait(3)
-driver.get(urlB)
-html = driver.page_source
-soup = BeautifulSoup(html)
-r = soup.select('.cunit_t232')   #take source
-prdC = 0   # items count
-
-searchList.append(['야채'])
-for x in r:
-    temp = []
-    temp.append(x.select_one('div.title a > em.tx_ko').text)      #items 1
-    temp.append(x.select_one('div.opt_price em.ssg_price').text)  #items 2
-    searchList.append(temp) #makes two-dimensional array
-    prdC = prdC + 1
-    if prdC == 10 : 
-        break
-    
 driver.close()
 
 f = open(f'./test-save/1-emart.csv', 'w', encoding='utf-8', newline='')

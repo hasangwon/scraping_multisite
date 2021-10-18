@@ -6,8 +6,8 @@ import glob
 import time
                     
 # csv file merge
-path = 'C:/PROJECTS/python/save/' #csv files route
-merge_path = 'C:/PROJECTS/python/crawl_data.csv' #save file
+path = 'C:/PROJECTS/scraping_multisite/test-save/' #csv files route
+merge_path = 'C:/PROJECTS/scraping_multisite/hn.csv' #save file
 
 file_list = glob.glob(path + '*')  # file check
 

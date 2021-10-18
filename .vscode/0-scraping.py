@@ -308,7 +308,7 @@ for i in range(15) :
         temp.append(prdC + 1)
         temp.append('온브릭스')
         temp.append(r[i].select_one('div.item-pay > h2').text.strip())   
-        temp.append(r[i].select_one('a > div > div.item-pay-detail > p.pay').text.strip())   
+        temp.append(r[i].select_one('div.item-pay > div.item-pay-detail > p.pay').text.strip())   
         searchList.append(temp) #makes two-dimensional array
     except IndexError as e :
         searchList.append(temp) #makes two-dimensional array
@@ -333,7 +333,7 @@ for i in range(15) :
         temp.append(prdC + 1)
         temp.append('온브릭스')
         temp.append(r[i].select_one('div.item-pay > h2').text.strip())   
-        temp.append(r[i].select_one('a > div > div.item-pay-detail > p.pay').text.strip())   
+        temp.append(r[i].select_one('div.item-pay > div.item-pay-detail > p.pay').text.strip())   
         searchList.append(temp) #makes two-dimensional array
     except IndexError as e :
         searchList.append(temp) #makes two-dimensional array
@@ -461,7 +461,7 @@ for x in r:
     temp.append('네이버쇼핑')
     temp.append(x.select_one('a.basicList_link__1MaTN').text)   
     temp.append(x.select_one('span span.price_num__2WUXn').text)     
-    searchList.append(temp)
+    searchList.append(temp) 
     prdC = prdC + 1
     if prdC == 30 : 
         break
@@ -623,10 +623,10 @@ for i in range(30) :
     try : 
         temp.append(prdC + 1)
         temp.append('맛다름')
-        temp.append(r[i].select_one('p.name ').text)   
-        temp.append(r[i].select_one('span.price.displaynone_sale.displaynone_custom').text)   
+        #temp.append(r[i].select_one('p.name ').text)   
+        #temp.append(r[i].select_one('span.price.displaynone_sale.displaynone_custom').text)  
         searchList.append(temp) #makes two-dimensional array
-    except IndexError as e :
+    except AttributeError as e :
         searchList.append(temp) #makes two-dimensional array
     prdC = prdC + 1
     if prdC == 30 : 
@@ -668,10 +668,10 @@ for i in range(30) :
     try : 
         temp.append(prdC + 1)
         temp.append('맛다름')
-        temp.append(r[i].select_one('p.name ').text)   
-        temp.append(r[i].select_one('span.price.displaynone_sale.displaynone_custom').text)   
+        #temp.append(r[i].select_one('p.name ').text)   
+        #temp.append(r[i].select_one('span.price.displaynone_sale.displaynone_custom').text)  
         searchList.append(temp) #makes two-dimensional array
-    except IndexError as e :
+    except AttributeError as e :
         searchList.append(temp) #makes two-dimensional array
     prdC = prdC + 1
     if prdC == 30 : 
@@ -713,10 +713,10 @@ for i in range(30) :
     try : 
         temp.append(prdC + 1)
         temp.append('맛다름')
-        temp.append(r[i].select_one('p.name ').text)   
-        temp.append(r[i].select_one('span.price.displaynone_sale.displaynone_custom').text)   
+        #temp.append(r[i].select_one('p.name ').text)   
+        #temp.append(r[i].select_one('span.price.displaynone_sale.displaynone_custom').text)  
         searchList.append(temp) #makes two-dimensional array
-    except IndexError as e :
+    except AttributeError as e :
         searchList.append(temp) #makes two-dimensional array
     prdC = prdC + 1
     if prdC == 30 : 
@@ -758,12 +758,12 @@ for i in range(30) :
     try : 
         temp.append(prdC + 1)
         temp.append('맛다름')
-        temp.append(r[i].select_one('p.name ').text)   
-        temp.append(r[i].select_one('span.price.displaynone_sale.displaynone_custom').text)   
+        #temp.append(r[i].select_one('p.name ').text)   
+        #temp.append(r[i].select_one('span.price.displaynone_sale.displaynone_custom').text)   
         searchList.append(temp) #makes two-dimensional array
-    except IndexError as e :
+    except AttributeError as e :
         searchList.append(temp) #makes two-dimensional array
-    prdC = prdC + 1
+    prdC = prdC + 1 
     if prdC == 30 : 
         break
 driver.close()
@@ -802,7 +802,7 @@ ws = wb.active
 with open('./crawl_data.csv', 'r', encoding='cp949') as f:
     for row in csv.reader(f):
         ws.append(row)
-wb.save('Prd_list_06_11.xlsx')
+wb.save('Prd_list_09_.xlsx')
 print('>>All process done!')
 
 
