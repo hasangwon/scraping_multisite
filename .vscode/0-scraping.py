@@ -38,6 +38,8 @@ driver.close()
 # 마켓컬리 -----------------------------------------------------------------------------
 print('K crawling')
 
+
+
 urlA = 'https://www.kurly.com/shop/goods/goods_list.php?category=908006'
 driver = webdriver.Chrome()
 time.sleep(2)
@@ -404,7 +406,7 @@ for x in r:
         break
 driver.close()
 # 쿠팡 -----------------------------------------------------------------------------
-print('KURLY crawling')
+print('KURLY crawling') 
 searchList.append([' '])
 searchList.append(['쿠팡/채소'])
 urlB = 'https://www.coupang.com/np/categories/194432'  # site to crawl
@@ -535,7 +537,7 @@ driver.close()
 # 지마켓 -----------------------------------------------------------------------------
 print('GMARKET crawling')
 searchList.append([' '])
-searchList.append(['지마켓/채소'])
+searchList.append(['지마켓/채소']) 
 urlB = 'http://browse.gmarket.co.kr/list?category=200001215'  # site to crawl
 driver = webdriver.Chrome()
 driver.implicitly_wait(3)
@@ -802,7 +804,7 @@ ws = wb.active
 with open('./crawl_data.csv', 'r', encoding='cp949') as f:
     for row in csv.reader(f):
         ws.append(row)
-wb.save('Prd_list_09_.xlsx')
+wb.save('Prd_list_12.xlsx')
 print('>>All process done!')
 
 
